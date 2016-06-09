@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="en-US" ng-app="TIYAngularApp">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="css/tiy-ng-controller.css" rel="stylesheet" type="text/css"/>
+</head>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="js/tiy-ng-controller.js"></script>
+<body ng-controller="SampleController">
+{{! changing the mustache delimiter so it doesn't conflict with  }}
+{{! the default angularjs delimeters - https://mustache.github.io/mustache.5.html for more info  }}
+{{=<% %>=}}
+
+<div style="position: relative; float: left; width: 100%; padding: 20px;">
+    <h1>Hello Welcome To The Chocolate Factory!</h1>
+
+</div>
+
+<div style="position: relative; float: left; width: 40%; padding: 20px; border: 1px solid #EAEAEA;">
+    <h1>Enter Chocolate information</h1>
+    <span>Small bars(1 kilo each): <input type="text" ng-model="newChocolate.smallBars"/></span>   <br><br>
+
+
+    <span>Big Bars(5 kilos each): <input type="text" ng-model="newChocolate.bigBars"/></span>   <br><br>
+
+
+    <span>Total Chocolate wanted: <input type="text" ng-model="newChocolate.totalAmount"/></span>   <br><br>
+    <span>  <input type="button" ng-click="makeChocolate()" value="Submit"/></span>
+    <br><br>
+
+</div>
+<div style="position: relative; float: right; width: 50%; padding: 20px; border: 1px solid #EAEAEA;">
+    <h1>Chocolate Inventory</h1>
+
+    Small Chocolates Total: {{newChocolate.smallBars}}&nbsp
+    <br><br>
+    Big Chocolate Total: {{newChocolate.bigBars}}
+    <div ng-repeat="chocIndex in makeArray(newChocolate.bigBars)">
+        <div class="choc-big-bar">{{chocIndex + 1}}</div>
+    </div>
+
+    <div ng-repeat="chocIndex in makeArray(newChocolate.smallBars)">
+        <div class="choc-small-bar">{{chocIndex + 1}}</div>
+    </div>
+    <br><br>
+    <br><br>
+    <h1>Made Chocolate</h1>
+
+   Small Chocolate Used: {{madeChocolate.smalls}}&nbsp
+    <br><br>
+    Big Chocolate Used: {{madeChocolate.bigs}}
+    <div ng-repeat="chocIndex in makeArray(madeChocolate.bigs)">
+        <div class="choc-big-bar">{{chocIndex + 1}}</div>
+    </div>
+
+    <div ng-repeat="chocIndex in makeArray(madeChocolate.smalls)">
+        <div class="choc-small-bar">{{chocIndex + 1}}</div>
+    </div>
+
+
+</div>
+</body>
+</html>
